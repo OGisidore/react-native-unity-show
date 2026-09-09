@@ -35,7 +35,7 @@ Commit: `9796d66`
 
 ## MOD-002 - Package metadata and public API baseline
 
-Status: `TODO`
+Status: `DONE`
 
 Branch: `fix/mod-002-package-api-baseline`
 
@@ -68,7 +68,7 @@ Required tests:
 
 Risk: `LOW`
 
-Commit: `TBD`
+Commit: `40f99ac`
 
 ## MOD-003 - Modern JavaScript package tooling
 
