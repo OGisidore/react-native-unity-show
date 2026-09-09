@@ -31,7 +31,7 @@ Required tests:
 
 Risk: `LOW`
 
-Commit: `a3c5be8`
+Commit: `9796d66`
 
 ## MOD-002 - Package metadata and public API baseline
 
