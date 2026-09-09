@@ -20,13 +20,13 @@ const UnityShow = NativeModules.UnityShow
 const UnityShowUserAgent = NativeModules.UnityShowUserAgent
   ? NativeModules.UnityShowUserAgent
   : new Proxy(
-    {},
-    {
-      get() {
-        throw new Error(LINKING_ERROR);
-      },
-    }
-  );
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
 
 export function multiply(a: number, b: number): Promise<number> {
   return UnityShow.multiply(a, b);

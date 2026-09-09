@@ -1,7 +1,7 @@
 {
   "name": "react-native-unity-show",
   "version": "0.1.7",
-  "description": "sdfsdfdfgfdgd",
+  "description": "React Native native module groundwork for a Unity bridge",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -73,6 +73,7 @@
   },
   "jest": {
     "preset": "react-native",
+    "watchman": false,
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
