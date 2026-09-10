@@ -403,7 +403,7 @@ Blocking condition:
 
 ## MOD-010 - iOS Unity as a Library integration
 
-Status: `TODO`
+Status: `BLOCKED`
 
 Branch: `feat/mod-010-ios-unity-framework`
 
@@ -438,7 +438,37 @@ Required tests:
 
 Risk: `HIGH`
 
-Commit: `TBD`
+Commit: `d19aae2`
+
+Implementation notes:
+
+- Added an Expo Modules iOS runtime surface for `load`, `unload`, `pause`,
+  `resume`, `sendMessage`, and `UnityShowView`.
+- Added dynamic `UnityFramework.framework` discovery/loading so the package can
+  compile without Unity headers or generated Unity artifacts in the npm package.
+- Added C-callable symbols `UnityShowEmitReady`, `UnityShowEmitMessage`,
+  `UnityShowEmitStateChange`, and `UnityShowEmitError` so Unity C# code can emit
+  bridge events back to JavaScript on iOS.
+- Added `docs/IOS_UNITY_INTEGRATION.md` with the expected Unity export layout,
+  manual embedding contract, JS-to-Unity message mapping, Unity-to-JS callback
+  examples, lifecycle behavior, and Unity limitations.
+- `yarn prepare`, `yarn typescript`, `yarn lint`, and `yarn test` pass from the
+  package root.
+- `yarn --cwd example tsc --noEmit` passes.
+- `yarn --cwd example expo prebuild --platform ios --no-install` passes.
+- `pod install` passes in `example/ios`.
+- `xcodebuild -workspace UnityShowExample.xcworkspace -scheme UnityShowExample
+  -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS
+  Simulator' build` passes without a Unity export, validating that the package
+  can compile in a modern Expo/RN iOS app.
+
+Blocking condition:
+
+- Runtime Unity validation is not complete because the repository does not
+  contain a user-provided iOS Unity export with `UnityFramework.framework`. The
+  remaining acceptance checks require a real Unity export and simulator/device
+  smoke test: load Unity content, send JS-to-Unity message, emit Unity-to-JS
+  event, and manually validate load/background/foreground/unload lifecycle.
 
 ## MOD-011 - Config plugin and Unity artifact integration workflow
 
