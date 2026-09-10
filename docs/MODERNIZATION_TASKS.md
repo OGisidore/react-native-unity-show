@@ -113,7 +113,7 @@ Commit: `f3634a6`
 
 ## MOD-004 - Android library build modernization
 
-Status: `TODO`
+Status: `DONE`
 
 Branch: `fix/mod-004-android-library-build`
 
@@ -148,7 +148,12 @@ Required tests:
 
 Risk: `MEDIUM`
 
-Commit: `TBD`
+Commit: `47fdafe`
+
+Validation notes:
+
+- `yarn typescript`, `yarn lint`, and `yarn test` pass.
+- `./gradlew :reactnativeunityshow:tasks --no-daemon` from `example/android` is blocked before module evaluation because the current example still uses Gradle 6.2 under Java 24 (`Could not initialize class org.codehaus.groovy.reflection.ReflectionCache`). This is expected to be resolved by MOD-005.
 
 ## MOD-005 - Regenerate example app on modern Expo/RN baseline
 
