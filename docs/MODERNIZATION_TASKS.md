@@ -472,7 +472,7 @@ Blocking condition:
 
 ## MOD-011 - Config plugin and Unity artifact integration workflow
 
-Status: `TODO`
+Status: `DONE`
 
 Branch: `feat/mod-011-expo-config-plugin-unity`
 
@@ -505,7 +505,52 @@ Required tests:
 
 Risk: `HIGH`
 
-Commit: `TBD`
+Commit: `176c8e7`
+
+Implementation notes:
+
+- Added `app.plugin.js` and `plugin/withUnityShow.js` as the package Expo
+  config plugin entrypoint.
+- Added plugin options for Android `unityLibrary` path/module name, iOS
+  `UnityFramework.framework` path/podspec name, and
+  `failOnMissingUnityExport`.
+- Android prebuild now patches `settings.gradle` and `app/build.gradle`
+  idempotently. The generated Gradle config includes `unityLibrary` only when
+  the configured export path exists, so the example still builds without Unity
+  artifacts.
+- iOS prebuild now writes a local `UnityFramework.podspec` and patches the
+  Podfile idempotently. The generated Podfile installs the Unity pod only when
+  the configured framework path exists, so the example still builds without
+  Unity artifacts.
+- Added `docs/EXPO_CONFIG_PLUGIN.md` and linked it from the Android/iOS Unity
+  integration docs and README.
+- Added unit tests for option normalization, Android Gradle patching, iOS
+  Podfile patching, podspec generation, idempotency, and Ruby string escaping.
+- Updated `example/app.json` to enable the package config plugin with the
+  default ignored Unity artifact paths.
+
+Validation:
+
+- `yarn install --ignore-scripts` updated the root lockfile.
+- `yarn prepare`, `yarn typescript`, `yarn lint`, and `yarn test` pass from the
+  package root.
+- `yarn --cwd example expo prebuild --clean --no-install` applies the plugin and
+  generates Android/iOS native projects.
+- Generated Android files contain the expected `unityLibrary` wiring.
+- Generated iOS files contain the expected conditional `UnityFramework` pod
+  wiring and generated podspec.
+- `./gradlew :app:assembleDebug --no-daemon` passes from `example/android`
+  without a Unity export.
+- `pod install` passes from `example/ios` without a Unity export.
+- `xcodebuild -workspace UnityShowExample.xcworkspace -scheme UnityShowExample
+  -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS
+  Simulator' build` passes without a Unity export.
+
+Remaining runtime limitation:
+
+- The plugin has not been validated with real Unity Android/iOS exports because
+  the repository intentionally does not contain generated Unity artifacts. That
+  validation remains part of the end-to-end smoke sample/runtime tasks.
 
 ## MOD-012 - CI modernization and native validation
 
