@@ -34,6 +34,7 @@ Planned Unity bridge work is tracked in:
 - [`docs/MODERNIZATION_AUDIT.md`](docs/MODERNIZATION_AUDIT.md)
 - [`docs/MODERNIZATION_TASKS.md`](docs/MODERNIZATION_TASKS.md)
 - [`docs/UNITY_BRIDGE_API.md`](docs/UNITY_BRIDGE_API.md)
+- [`docs/ANDROID_UNITY_INTEGRATION.md`](docs/ANDROID_UNITY_INTEGRATION.md)
 
 ## Installation
 

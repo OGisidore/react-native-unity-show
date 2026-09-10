@@ -11,6 +11,9 @@ Native Unity runtime support is still pending:
 - iOS implementation: MOD-010.
 - End-to-end Unity sample: MOD-011.
 
+Android-specific artifact expectations are documented in
+[`ANDROID_UNITY_INTEGRATION.md`](ANDROID_UNITY_INTEGRATION.md).
+
 Until those tasks are complete, Unity commands throw a clear "native Unity
 runtime implementation is not available yet" error, and `UnityShowView` throws if
 no native view manager is registered.

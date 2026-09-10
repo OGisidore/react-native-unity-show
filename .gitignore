@@ -48,6 +48,9 @@ example/ios/Pods
 example/android/
 example/ios/
 
+# User-provided Unity exports for local integration tests
+example/unity/
+
 # node.js
 #
 node_modules/
