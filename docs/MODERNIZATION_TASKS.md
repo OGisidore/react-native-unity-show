@@ -301,7 +301,7 @@ Validation notes:
 
 ## MOD-008 - Define Unity bridge public API
 
-Status: `TODO`
+Status: `DONE`
 
 Branch: `feat/mod-008-unity-bridge-api-contract`
 
@@ -333,7 +333,16 @@ Required tests:
 
 Risk: `HIGH`
 
-Commit: `TBD`
+Commit: `e2829c8`
+
+Validation notes:
+
+- Added the public TypeScript contract for `UnityShowView`, lifecycle commands, Unity messages, event subscriptions, lifecycle states, and error payloads.
+- Added `docs/UNITY_BRIDGE_API.md` and linked it from the README.
+- The contract is additive relative to `multiply` and `getUserAgent`; both remain documented as transitional compatibility APIs.
+- `UnityShowView` and Unity commands fail with explicit implementation errors until the Android/iOS native Unity runtime tasks are complete.
+- `yarn prepare`, `yarn typescript`, `yarn lint`, and `yarn test` pass from the package root.
+- `yarn --cwd example tsc --noEmit` passes after `yarn prepare` has generated package declaration files.
 
 ## MOD-009 - Android Unity as a Library integration
 
