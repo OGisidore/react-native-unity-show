@@ -251,7 +251,7 @@ Validation notes:
 
 ## MOD-007 - Expo Modules API scaffold
 
-Status: `TODO`
+Status: `DONE`
 
 Branch: `feat/mod-007-expo-modules-scaffold`
 
@@ -285,7 +285,19 @@ Required tests:
 
 Risk: `HIGH`
 
-Commit: `TBD`
+Commit: `0e69765`
+
+Validation notes:
+
+- `yarn prepare`, `yarn typescript`, `yarn lint`, and `yarn test` pass from the package root.
+- `yarn --cwd example expo prebuild --no-install` passes and regenerates the Expo CNG native projects.
+- Expo autolinking `resolve --platform ios` discovers `react-native-unity-show`, the pod `react-native-unity-show`, Swift module `react_native_unity_show`, and `UnityShowExpoModule`.
+- Expo autolinking `resolve --platform android` discovers `react-native-unity-show` and `com.reactnativeunityshow.UnityShowExpoModule`.
+- `pod install` from `example/ios` passes and the generated Expo modules provider imports `react_native_unity_show` and registers `UnityShowExpoModule.self`.
+- `xcodebuild -workspace UnityShowExample.xcworkspace -scheme UnityShowExample -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build` passes with Xcode 26.6.
+- `yarn --cwd example doctor --verbose` passes 20/21 checks. The remaining failure is duplicate `react`/`react-native` detection caused by the local development layout: `example` links `react-native-unity-show` to `..`, while the root package also has its own `node_modules`.
+- Android Gradle evaluation reaches Expo/RN configuration but is blocked by the local Android SDK: NDK `/Users/macuser/Library/Android/sdk/ndk/27.1.12297006` is missing `source.properties`. The local SDK command-line tools are also unavailable (`sdkmanager: command not found`), so this environment cannot repair the NDK install.
+- The JS wrapper loads `expo-modules-core` dynamically and falls back to the legacy `NativeModules.UnityShow` path when the Expo module is unavailable.
 
 ## MOD-008 - Define Unity bridge public API
 
