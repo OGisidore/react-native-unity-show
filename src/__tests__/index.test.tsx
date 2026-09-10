@@ -1,4 +1,12 @@
-function loadModule(nativeModules = {}, os = 'ios') {
+function loadModule({
+  nativeModules = {},
+  expoModule = null,
+  os = 'ios',
+}: {
+  nativeModules?: Record<string, unknown>;
+  expoModule?: unknown;
+  os?: string;
+} = {}) {
   jest.resetModules();
   jest.doMock('react-native', () => ({
     NativeModules: nativeModules,
@@ -8,6 +16,9 @@ function loadModule(nativeModules = {}, os = 'ios') {
         options[os] ?? options.default,
     },
   }));
+  jest.doMock('expo-modules-core', () => ({
+    requireOptionalNativeModule: jest.fn(() => expoModule),
+  }));
 
   return require('../index');
 }
@@ -15,13 +26,28 @@ function loadModule(nativeModules = {}, os = 'ios') {
 describe('react-native-unity-show public API', () => {
   afterEach(() => {
     jest.dontMock('react-native');
+    jest.dontMock('expo-modules-core');
   });
 
-  it('delegates multiply to the UnityShow native module', async () => {
+  it('delegates multiply to the Expo module when available', async () => {
     const multiplyNative = jest.fn().mockResolvedValue(21);
     const { multiply } = loadModule({
-      UnityShow: {
+      expoModule: {
         multiply: multiplyNative,
+      },
+    });
+
+    await expect(multiply(3, 7)).resolves.toBe(21);
+    expect(multiplyNative).toHaveBeenCalledWith(3, 7);
+  });
+
+  it('falls back from the Expo module to the UnityShow native module', async () => {
+    const multiplyNative = jest.fn().mockResolvedValue(21);
+    const { multiply } = loadModule({
+      nativeModules: {
+        UnityShow: {
+          multiply: multiplyNative,
+        },
       },
     });
 
@@ -32,8 +58,10 @@ describe('react-native-unity-show public API', () => {
   it('delegates getUserAgent to the UnityShowUserAgent native module', async () => {
     const getWebViewUserAgent = jest.fn().mockResolvedValue('ExampleUserAgent');
     const { getUserAgent } = loadModule({
-      UnityShowUserAgent: {
-        getWebViewUserAgent,
+      nativeModules: {
+        UnityShowUserAgent: {
+          getWebViewUserAgent,
+        },
       },
     });
 

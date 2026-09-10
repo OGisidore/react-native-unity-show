@@ -1,0 +1,11 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "podspecPath": "react-native-unity-show.podspec",
+    "swiftModuleName": "react_native_unity_show",
+    "modules": ["UnityShowExpoModule"]
+  },
+  "android": {
+    "modules": ["com.reactnativeunityshow.UnityShowExpoModule"]
+  }
+}

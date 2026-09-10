@@ -1325,6 +1325,11 @@
     "@eslint/core" "^0.17.0"
     levn "^0.4.1"
 
+"@expo/expo-modules-macros-plugin@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@expo/expo-modules-macros-plugin/-/expo-modules-macros-plugin-0.6.1.tgz#5581bbe09e0aedb39ea787a9960eb0a9ee07d2ff"
+  integrity sha512-cpsLZE4rqkc1Y3eZTkxB98jrqY1YXgetmtxFt8q89jBRmk3quRuk1BZo+VcnCSObZardjg99r1k5xijEMONFGA==
+
 "@humanfs/core@^0.19.2":
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/@humanfs/core/-/core-0.19.2.tgz#a8272ca03b2acf492670222b2320b6c421bfde60"
@@ -4189,6 +4194,20 @@ expect@30.5.1, expect@^30.0.0:
     jest-message-util "30.5.1"
     jest-mock "30.5.1"
     jest-util "30.5.1"
+
+expo-modules-core@57.0.17:
+  version "57.0.17"
+  resolved "https://registry.yarnpkg.com/expo-modules-core/-/expo-modules-core-57.0.17.tgz#627bf8fbab9100b9e9d1047ff75353d9c9cb8813"
+  integrity sha512-hHJwGHW0sMQiOLzEEl1QbJeWkBEBgjlPjrdBVGWlzvgUbCXJfFbDU2nhxoyzLMZnvHkpIzpiJjj5cM5W8gbudA==
+  dependencies:
+    "@expo/expo-modules-macros-plugin" "0.6.1"
+    expo-modules-jsi "~57.1.0"
+    invariant "^2.2.4"
+
+expo-modules-jsi@~57.1.0:
+  version "57.1.0"
+  resolved "https://registry.yarnpkg.com/expo-modules-jsi/-/expo-modules-jsi-57.1.0.tgz#21c1d3df20ea886e937a9ea2930699e34e164867"
+  integrity sha512-a5ckeHfnbYfonhcHGkM0EU/a0Keh+/OufXy/HyFS+spr5Ib0N4Oh1ZsSYFQhp5xdOUFkVofKRhfH+VmcccIIpA==
 
 exponential-backoff@^3.1.1:
   version "3.1.3"

@@ -27,6 +27,7 @@
     "android",
     "ios",
     "cpp",
+    "expo-module.config.json",
     "react-native-unity-show.podspec",
     "!lib/typescript/example",
     "!android/build",
@@ -77,6 +78,7 @@
     "@types/node": "^22.20.2",
     "@types/react": "^19.1.1",
     "eslint": "^9.39.5",
+    "expo-modules-core": "57.0.17",
     "husky": "^9.1.7",
     "jest": "^30.5.1",
     "pod-install": "^1.1.0",
@@ -88,8 +90,14 @@
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
+    "expo": "*",
     "react": "*",
     "react-native": "*"
+  },
+  "peerDependenciesMeta": {
+    "expo": {
+      "optional": true
+    }
   },
   "jest": {
     "preset": "@react-native/jest-preset",
