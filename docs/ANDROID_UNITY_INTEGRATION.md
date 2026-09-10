@@ -26,9 +26,9 @@ project contains:
 - `launcher`: a thin app module that can be replaced by the React Native / Expo
   application.
 
-The host app must include the generated `unityLibrary` module in Gradle. Until
-MOD-011 adds an Expo config plugin, this is a manual native-project step after
-`expo prebuild`.
+The host app must include the generated `unityLibrary` module in Gradle. For
+Expo CNG apps, use the config plugin documented in
+[`EXPO_CONFIG_PLUGIN.md`](EXPO_CONFIG_PLUGIN.md).
 
 Recommended local layout for the example app:
 

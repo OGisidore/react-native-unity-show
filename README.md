@@ -34,6 +34,7 @@ Planned Unity bridge work is tracked in:
 - [`docs/MODERNIZATION_AUDIT.md`](docs/MODERNIZATION_AUDIT.md)
 - [`docs/MODERNIZATION_TASKS.md`](docs/MODERNIZATION_TASKS.md)
 - [`docs/UNITY_BRIDGE_API.md`](docs/UNITY_BRIDGE_API.md)
+- [`docs/EXPO_CONFIG_PLUGIN.md`](docs/EXPO_CONFIG_PLUGIN.md)
 - [`docs/ANDROID_UNITY_INTEGRATION.md`](docs/ANDROID_UNITY_INTEGRATION.md)
 - [`docs/IOS_UNITY_INTEGRATION.md`](docs/IOS_UNITY_INTEGRATION.md)
 
@@ -54,6 +55,7 @@ const userAgent = await getUserAgent();
 
 See [`docs/UNITY_BRIDGE_API.md`](docs/UNITY_BRIDGE_API.md) for the Unity bridge
 API contract. Android and iOS runtime setup details are documented in
+[`docs/EXPO_CONFIG_PLUGIN.md`](docs/EXPO_CONFIG_PLUGIN.md),
 [`docs/ANDROID_UNITY_INTEGRATION.md`](docs/ANDROID_UNITY_INTEGRATION.md) and
 [`docs/IOS_UNITY_INTEGRATION.md`](docs/IOS_UNITY_INTEGRATION.md).
 

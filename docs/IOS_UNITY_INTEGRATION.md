@@ -29,8 +29,8 @@ contains:
   React Native / Expo application.
 
 The host app must build and embed the generated `UnityFramework.framework` in
-the app target. Until MOD-011 adds an Expo config plugin, this is a manual
-native-project step after `expo prebuild`.
+the app target. For Expo CNG apps, use the config plugin documented in
+[`EXPO_CONFIG_PLUGIN.md`](EXPO_CONFIG_PLUGIN.md).
 
 Recommended local layout for the example app:
 

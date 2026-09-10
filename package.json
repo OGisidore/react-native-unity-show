@@ -19,6 +19,8 @@
         "default": "./lib/commonjs/index.js"
       }
     },
+    "./app.plugin": "./app.plugin.js",
+    "./plugin": "./plugin/withUnityShow.js",
     "./package.json": "./package.json"
   },
   "files": [
@@ -27,6 +29,8 @@
     "android",
     "ios",
     "cpp",
+    "plugin",
+    "app.plugin.js",
     "expo-module.config.json",
     "react-native-unity-show.podspec",
     "!lib/typescript/example",
@@ -55,6 +59,9 @@
     "ios",
     "android"
   ],
+  "dependencies": {
+    "@expo/config-plugins": "~57.0.9"
+  },
   "repository": "https://github.com/azesmway/react-native-unity-show",
   "author": "azesm <azesm@me.com> (https://github.com/azesmway)",
   "license": "MIT",

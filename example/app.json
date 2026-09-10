@@ -12,6 +12,19 @@
     "android": {
       "package": "com.example.reactnativeunityshow"
     },
-    "plugins": ["expo-dev-client"]
+    "plugins": [
+      "expo-dev-client",
+      [
+        "react-native-unity-show",
+        {
+          "android": {
+            "unityLibraryPath": "../unity/android/unityLibrary"
+          },
+          "ios": {
+            "unityFrameworkPath": "../unity/ios/UnityFramework.framework"
+          }
+        }
+      ]
+    ]
   }
 }
