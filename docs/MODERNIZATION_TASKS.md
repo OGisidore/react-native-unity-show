@@ -157,7 +157,7 @@ Validation notes:
 
 ## MOD-005 - Regenerate example app on modern Expo/RN baseline
 
-Status: `TODO`
+Status: `DONE`
 
 Branch: `fix/mod-005-modern-example-app`
 
@@ -192,7 +192,16 @@ Required tests:
 
 Risk: `HIGH`
 
-Commit: `TBD`
+Commit: `e58127d`
+
+Validation notes:
+
+- `yarn prepare`, `yarn typescript`, `yarn lint`, and `yarn test` pass from the package root.
+- `yarn --cwd example tsc --noEmit` passes.
+- `yarn --cwd example expo prebuild --no-install` passes and generates modern Expo-managed Android/iOS native projects.
+- `yarn --cwd example doctor --verbose` passes 20/21 checks. The remaining failure is duplicate `react`/`react-native` detection caused by local development layout: `example` links `react-native-unity-show` to `..`, while the root package also has its own `node_modules`.
+- Android `:app:assembleDebug` after prebuild reaches Gradle/Expo configuration but is blocked by the local Android SDK: NDK `/Users/macuser/Library/Android/sdk/ndk/27.1.12297006` is missing `source.properties`.
+- iOS build validation still requires a local Xcode/CocoaPods pass and is covered by MOD-006.
 
 ## MOD-006 - iOS build and podspec modernization
 
