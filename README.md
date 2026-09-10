@@ -25,9 +25,9 @@ Current Unity bridge contract exports:
 - `addUnityEventListener(eventName, listener)`
 
 These Unity bridge APIs are typed and documented, but the native Unity runtime
-implementation is still pending. Rendering `UnityShowView` or calling Unity
-commands before the Android/iOS Unity integration is complete will fail with an
-explicit implementation error.
+implementation requires host-provided Unity artifacts. Rendering `UnityShowView`
+or calling Unity commands before the Android/iOS app embeds a Unity export will
+fail with an explicit implementation error.
 
 Planned Unity bridge work is tracked in:
 
@@ -35,6 +35,7 @@ Planned Unity bridge work is tracked in:
 - [`docs/MODERNIZATION_TASKS.md`](docs/MODERNIZATION_TASKS.md)
 - [`docs/UNITY_BRIDGE_API.md`](docs/UNITY_BRIDGE_API.md)
 - [`docs/ANDROID_UNITY_INTEGRATION.md`](docs/ANDROID_UNITY_INTEGRATION.md)
+- [`docs/IOS_UNITY_INTEGRATION.md`](docs/IOS_UNITY_INTEGRATION.md)
 
 ## Installation
 
@@ -51,9 +52,10 @@ const result = await multiply(3, 7);
 const userAgent = await getUserAgent();
 ```
 
-See [`docs/UNITY_BRIDGE_API.md`](docs/UNITY_BRIDGE_API.md) for the target Unity
-bridge API contract. The Unity runtime implementation is planned separately for
-Android and iOS.
+See [`docs/UNITY_BRIDGE_API.md`](docs/UNITY_BRIDGE_API.md) for the Unity bridge
+API contract. Android and iOS runtime setup details are documented in
+[`docs/ANDROID_UNITY_INTEGRATION.md`](docs/ANDROID_UNITY_INTEGRATION.md) and
+[`docs/IOS_UNITY_INTEGRATION.md`](docs/IOS_UNITY_INTEGRATION.md).
 
 ## Contributing
 

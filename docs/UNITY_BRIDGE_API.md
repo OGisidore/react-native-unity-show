@@ -5,7 +5,8 @@ integration must implement. The contract is exported by the package before the
 platform Unity runtimes are implemented, so consumers can review and type-check
 against the target API early.
 
-Native Unity runtime support is still pending:
+Native Unity runtime support is implemented behind host-provided Unity
+artifacts:
 
 - Android implementation: MOD-009.
 - iOS implementation: MOD-010.
@@ -13,10 +14,11 @@ Native Unity runtime support is still pending:
 
 Android-specific artifact expectations are documented in
 [`ANDROID_UNITY_INTEGRATION.md`](ANDROID_UNITY_INTEGRATION.md).
+iOS-specific artifact expectations are documented in
+[`IOS_UNITY_INTEGRATION.md`](IOS_UNITY_INTEGRATION.md).
 
-Until those tasks are complete, Unity commands throw a clear "native Unity
-runtime implementation is not available yet" error, and `UnityShowView` throws if
-no native view manager is registered.
+Without platform Unity artifacts, Unity commands throw a clear runtime error and
+`UnityShowView` emits an error event when it cannot load Unity.
 
 ## Exports
 
@@ -144,6 +146,17 @@ Supported event names:
 
 Native implementations must emit these event payloads consistently on Android
 and iOS.
+
+## Platform Runtime Notes
+
+- Android sends JavaScript messages to
+  `UnityPlayer.UnitySendMessage(gameObject, methodName, payloadString)` and
+  receives Unity events through static methods on
+  `com.reactnativeunityshow.UnityShowEventBus`.
+- iOS sends JavaScript messages to
+  `UnityFramework.sendMessageToGOWithName:functionName:message:` and receives
+  Unity events through `UnityShowEmitReady`, `UnityShowEmitMessage`,
+  `UnityShowEmitStateChange`, and `UnityShowEmitError` C symbols.
 
 ## Compatibility Notes
 
