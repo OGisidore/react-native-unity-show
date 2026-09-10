@@ -72,7 +72,7 @@ Commit: `40f99ac`
 
 ## MOD-003 - Modern JavaScript package tooling
 
-Status: `TODO`
+Status: `DONE`
 
 Branch: `fix/mod-003-js-package-tooling`
 
@@ -109,7 +109,7 @@ Required tests:
 
 Risk: `MEDIUM`
 
-Commit: `TBD`
+Commit: `f3634a6`
 
 ## MOD-004 - Android library build modernization
 
