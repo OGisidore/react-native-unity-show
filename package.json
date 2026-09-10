@@ -48,6 +48,10 @@
     "release": "release-it",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
+    "ci:js": "yarn prepare && yarn typescript && yarn lint && yarn test",
+    "ci:example:typecheck": "yarn --cwd example tsc --noEmit",
+    "ci:android": "yarn --cwd example expo prebuild --platform android --clean --no-install && cd example/android && ./gradlew :app:assembleDebug --no-daemon",
+    "ci:ios": "yarn --cwd example expo prebuild --platform ios --clean --no-install && cd example/ios && pod install && xcodebuild -workspace UnityShowExample.xcworkspace -scheme UnityShowExample -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build",
     "bootstrap": "yarn install && yarn example && yarn pods"
   },
   "packageManager": "yarn@1.22.22",

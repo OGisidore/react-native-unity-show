@@ -1,0 +1,109 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+      - modernization-audit-plan
+      - 'fix/**'
+      - 'feat/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package:
+    name: Package checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+          cache: yarn
+          cache-dependency-path: |
+            yarn.lock
+            example/yarn.lock
+
+      - name: Install root dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Install example dependencies
+        run: yarn --cwd example install --frozen-lockfile --ignore-scripts
+
+      - name: Build, typecheck, lint, and test package
+        run: yarn ci:js
+
+      - name: Typecheck example
+        run: yarn ci:example:typecheck
+
+  android:
+    name: Android generated build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+          cache: yarn
+          cache-dependency-path: |
+            yarn.lock
+            example/yarn.lock
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android native build tools
+        run: sdkmanager "ndk;27.1.12297006" "cmake;3.22.1"
+
+      - name: Install root dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Install example dependencies
+        run: yarn --cwd example install --frozen-lockfile --ignore-scripts
+
+      - name: Build generated Android example
+        run: yarn ci:android
+
+  ios:
+    name: iOS generated build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+          cache: yarn
+          cache-dependency-path: |
+            yarn.lock
+            example/yarn.lock
+
+      - name: Install root dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Install example dependencies
+        run: yarn --cwd example install --frozen-lockfile --ignore-scripts
+
+      - name: Build generated iOS example
+        run: yarn ci:ios
