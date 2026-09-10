@@ -32,8 +32,10 @@ Runtime exports:
 - `sendMessage(message)`: sends a typed message from React Native to Unity.
 - `addUnityEventListener(eventName, listener)`: subscribes to Unity bridge
   events.
-- `multiply(a, b)`: temporary native smoke-test API.
-- `getUserAgent()`: temporary iOS WebKit helper retained for compatibility.
+- `multiply(a, b)`: deprecated native smoke-test API retained only for
+  compatibility.
+- `getUserAgent()`: deprecated iOS WebKit helper retained only for
+  compatibility.
 
 Type exports:
 
@@ -165,5 +167,5 @@ and iOS.
   repository is migrating.
 - The API is additive relative to the existing `multiply` and `getUserAgent`
   exports.
-- `multiply` and `getUserAgent` are transitional APIs and should not be treated
-  as part of the final Unity bridge surface.
+- `multiply` and `getUserAgent` are deprecated transitional APIs and should not
+  be treated as part of the final Unity bridge surface.

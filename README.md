@@ -5,10 +5,11 @@ React Native native module groundwork for a Unity bridge.
 ## Modernization status
 
 This repository is under active modernization. The package name and original
-README describe a Unity integration goal, but the current published code does
-not yet expose a Unity view or a complete React Native / Expo to Unity bridge.
+README describe a Unity integration goal. The package now exposes the planned
+React Native / Expo Unity bridge API surface, while the native runtime still
+depends on host-provided Unity exports.
 
-Current implemented APIs:
+Compatibility-only deprecated APIs:
 
 - `multiply(a, b)`: native-module smoke test available on Android and iOS.
 - `getUserAgent()`: iOS native-module helper that resolves a `WKWebView` user
@@ -47,11 +48,16 @@ npm install react-native-unity-show
 
 ## Usage
 
-```ts
-import { multiply, getUserAgent } from 'react-native-unity-show';
+```tsx
+import { UnityShowView, sendMessage } from 'react-native-unity-show';
 
-const result = await multiply(3, 7);
-const userAgent = await getUserAgent();
+<UnityShowView source={{ projectId: 'default', initialScene: 'Main' }} />;
+
+await sendMessage({
+  gameObject: 'Bridge',
+  methodName: 'ReceiveMessage',
+  payload: { name: 'ping' },
+});
 ```
 
 See [`docs/UNITY_BRIDGE_API.md`](docs/UNITY_BRIDGE_API.md) for the Unity bridge

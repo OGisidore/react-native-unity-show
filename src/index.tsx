@@ -332,10 +332,19 @@ export function addUnityEventListener<EventName extends UnityShowEventName>(
   throw new Error(UNITY_BRIDGE_UNIMPLEMENTED_ERROR);
 }
 
+/**
+ * @deprecated Transitional native-module smoke test retained for compatibility
+ * during the Unity bridge migration. Use the Unity bridge APIs instead.
+ */
 export function multiply(a: number, b: number): Promise<number> {
   return (UnityShowExpo ?? UnityShow).multiply(a, b);
 }
 
+/**
+ * @deprecated Legacy iOS helper retained for compatibility with the original
+ * scaffold. It is unrelated to the Unity bridge and will be removed in a future
+ * breaking release after the public API is finalized.
+ */
 export function getUserAgent(): Promise<string> {
   return UnityShowUserAgent.getWebViewUserAgent();
 }
