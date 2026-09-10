@@ -1,21 +1,25 @@
 {
   "name": "react-native-unity-show-example",
-  "description": "Example app for react-native-unity-show",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start"
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "prebuild": "expo prebuild",
+    "start": "expo start --dev-client",
+    "doctor": "expo-doctor"
   },
   "dependencies": {
-    "react": "16.13.1",
-    "react-native": "0.63.4"
+    "expo": "57.0.21",
+    "expo-dev-client": "57.0.18",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-unity-show": "link:.."
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/runtime": "^7.12.5",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.64.0"
+    "@babel/core": "^7.29.7",
+    "@types/react": "~19.2.4",
+    "expo-doctor": "^1.20.4",
+    "typescript": "^6.0.3"
   }
 }

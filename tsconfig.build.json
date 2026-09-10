@@ -4,5 +4,6 @@
   "compilerOptions": {
     "rootDir": "."
   },
+  "include": ["src/index.tsx"],
   "exclude": ["example", "lib", "node_modules", "src/**/__tests__/**"]
 }

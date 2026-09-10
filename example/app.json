@@ -1,4 +1,17 @@
 {
-  "name": "UnityShowExample",
-  "displayName": "UnityShow Example"
+  "expo": {
+    "name": "UnityShow Example",
+    "slug": "react-native-unity-show-example",
+    "scheme": "unityshowexample",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "ios": {
+      "bundleIdentifier": "com.example.reactnativeunityshow",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.example.reactnativeunityshow"
+    },
+    "plugins": ["expo-dev-client"]
+  }
 }

@@ -11,7 +11,7 @@
     ".": {
       "react-native-unity-show-source": "./src/index.tsx",
       "import": {
-        "types": "./lib/typescript/module/src/index.d.ts",
+        "types": "./lib/typescript/commonjs/src/index.d.ts",
         "default": "./lib/module/index.js"
       },
       "require": {
