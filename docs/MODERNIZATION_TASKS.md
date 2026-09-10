@@ -554,7 +554,7 @@ Remaining runtime limitation:
 
 ## MOD-012 - CI modernization and native validation
 
-Status: `TODO`
+Status: `DONE`
 
 Branch: `fix/mod-012-ci-native-validation`
 
@@ -587,7 +587,28 @@ Required tests:
 
 Risk: `MEDIUM`
 
-Commit: `TBD`
+Commit: `1970eac`
+
+Implementation notes:
+
+- Added `.github/workflows/ci.yml` with separate package, Android generated
+  build, and iOS generated build jobs.
+- Added local CI scripts: `ci:js`, `ci:example:typecheck`, `ci:android`, and
+  `ci:ios`.
+- Added `docs/CI.md` documenting workflow coverage, local equivalents, and the
+  current Unity artifact limitation.
+- CI validates Expo CNG regeneration and native builds without checked-in Unity
+  artifacts. Real Unity runtime smoke validation still requires private Unity
+  exports.
+
+Validation:
+
+- `yarn ci:js` passes.
+- `yarn ci:example:typecheck` passes.
+- `yarn ci:android` passes when run outside the filesystem sandbox so Gradle can
+  access `~/.gradle`.
+- `yarn ci:ios` passes when run outside the filesystem sandbox so CocoaPods and
+  Xcode can access their normal caches and build directories.
 
 ## MOD-013 - Deprecation/removal cleanup
 
