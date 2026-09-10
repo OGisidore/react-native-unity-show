@@ -14,10 +14,26 @@ Current implemented APIs:
 - `getUserAgent()`: iOS native-module helper that resolves a `WKWebView` user
   agent string.
 
+Current Unity bridge contract exports:
+
+- `UnityShowView`
+- `loadUnity(source?)`
+- `unloadUnity()`
+- `pauseUnity()`
+- `resumeUnity()`
+- `sendMessage(message)`
+- `addUnityEventListener(eventName, listener)`
+
+These Unity bridge APIs are typed and documented, but the native Unity runtime
+implementation is still pending. Rendering `UnityShowView` or calling Unity
+commands before the Android/iOS Unity integration is complete will fail with an
+explicit implementation error.
+
 Planned Unity bridge work is tracked in:
 
 - [`docs/MODERNIZATION_AUDIT.md`](docs/MODERNIZATION_AUDIT.md)
 - [`docs/MODERNIZATION_TASKS.md`](docs/MODERNIZATION_TASKS.md)
+- [`docs/UNITY_BRIDGE_API.md`](docs/UNITY_BRIDGE_API.md)
 
 ## Installation
 
@@ -34,9 +50,9 @@ const result = await multiply(3, 7);
 const userAgent = await getUserAgent();
 ```
 
-`UnityShowView` is not currently exported. It is part of the planned
-modernization work and should not be considered available until the native Unity
-integration tasks are complete.
+See [`docs/UNITY_BRIDGE_API.md`](docs/UNITY_BRIDGE_API.md) for the target Unity
+bridge API contract. The Unity runtime implementation is planned separately for
+Android and iOS.
 
 ## Contributing
 
