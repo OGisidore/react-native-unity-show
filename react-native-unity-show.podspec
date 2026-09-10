@@ -10,10 +10,17 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => "12.0" }
+  s.platforms    = { :ios => "16.4" }
   s.source       = { :git => "https://github.com/azesmway/react-native-unity-show.git", :tag => "#{s.version}" }
 
-  s.source_files = "ios/**/*.{h,m,mm}"
+  s.source_files = "ios/**/*.{h,m,mm,swift}"
+  s.requires_arc = true
+  s.swift_versions = ["5.0"]
+  s.frameworks   = "WebKit"
+  s.pod_target_xcconfig = {
+    "DEFINES_MODULE" => "YES",
+    "HEADER_SEARCH_PATHS" => "\"$(inherited)\" \"$(PODS_ROOT)/Headers/Public/React-Core\" \"$(PODS_ROOT)/Headers/Private/React-Core\""
+  }
 
   s.dependency "React-Core"
 end
