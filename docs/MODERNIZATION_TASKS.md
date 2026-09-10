@@ -612,7 +612,7 @@ Validation:
 
 ## MOD-013 - Deprecation/removal cleanup
 
-Status: `TODO`
+Status: `BLOCKED`
 
 Branch: `fix/mod-013-deprecation-cleanup`
 
@@ -645,4 +645,31 @@ Required tests:
 
 Risk: `MEDIUM`
 
-Commit: `TBD`
+Commit: `0f630ce`
+
+Validation notes:
+
+- Safe cleanup completed without removing public APIs: `multiply` and
+  `getUserAgent` are now documented as deprecated compatibility-only exports.
+- README and Unity bridge API docs now direct usage toward `UnityShowView`,
+  `sendMessage`, and the typed Unity bridge contract.
+- The example app no longer exercises the old `multiply` smoke API; it now
+  renders `UnityShowView`, subscribes to bridge events, calls `loadUnity`, and
+  sends a sample message to Unity.
+- `yarn ci:js` passes.
+- `yarn ci:example:typecheck` passes.
+- `yarn ci:android` passes after Expo Android prebuild. The expected message
+  `[react-native-unity-show] Unity Android export not found at
+  ../unity/android/unityLibrary` is emitted because no Unity export is present.
+- `yarn ci:ios` passes after Expo iOS prebuild and CocoaPods install. The
+  expected message `[react-native-unity-show] Unity iOS framework not found at
+  ../unity/ios/UnityFramework.framework` is emitted because no Unity export is
+  present.
+
+Blocked reason:
+
+- Removing `multiply`, `getUserAgent`, `UnityShowUserAgent`, and legacy
+  compatibility bridge code would be a breaking public API change.
+- The Android and iOS Unity runtime tasks are still blocked on real Unity
+  exports/device smoke tests, so deleting fallback compatibility code before
+  those validations would be premature.
