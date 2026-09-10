@@ -205,7 +205,7 @@ Validation notes:
 
 ## MOD-006 - iOS build and podspec modernization
 
-Status: `TODO`
+Status: `DONE`
 
 Branch: `fix/mod-006-ios-podspec-build`
 
@@ -239,7 +239,15 @@ Required tests:
 
 Risk: `MEDIUM`
 
-Commit: `TBD`
+Commit: `5fee971`
+
+Validation notes:
+
+- `pod ipc spec react-native-unity-show.podspec` passes and reports iOS `16.4`, Swift `5.0`, ARC, `WebKit`, and `React-Core`.
+- `yarn --cwd example expo prebuild --platform ios --no-install` passes.
+- `pod install` from `example/ios` passes with network access, autolinks `react-native-unity-show`, configures React Native New Architecture, and installs 94 pods.
+- `xcodebuild -workspace UnityShowExample.xcworkspace -scheme UnityShowExample -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build` passes with Xcode 26.6 when run outside the filesystem sandbox.
+- `pod lib lint react-native-unity-show.podspec --allow-warnings --skip-import-validation` is not representative for this React Native library in isolation: CocoaPods trunk resolves `React-Core 0.1.0`, whose headers do not match modern React Native npm podspecs. The example app build is the authoritative validation for MOD-006.
 
 ## MOD-007 - Expo Modules API scaffold
 
