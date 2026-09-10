@@ -346,7 +346,7 @@ Validation notes:
 
 ## MOD-009 - Android Unity as a Library integration
 
-Status: `TODO`
+Status: `BLOCKED`
 
 Branch: `feat/mod-009-android-unity-library`
 
@@ -381,7 +381,25 @@ Required tests:
 
 Risk: `HIGH`
 
-Commit: `TBD`
+Commit: `50a03ae`
+
+Validation notes:
+
+- Added Android Expo Modules API commands for `load`, `unload`, `pause`, `resume`, and `sendMessage`.
+- Added an Android `UnityShowView` Expo view wrapper that attaches `UnityPlayer` when the host app provides Unity's `unityLibrary`.
+- Added a reflection-based `UnityShowRuntime`, so the npm package compiles without bundling generated Unity artifacts or requiring Unity classes on the compile classpath.
+- Added `UnityShowEventBus` with `@JvmStatic` methods for Unity C# code to emit `ready`, `message`, `stateChange`, and `error` events to JavaScript.
+- Added `docs/ANDROID_UNITY_INTEGRATION.md` with the expected Unity export layout, manual Gradle integration contract, JS-to-Unity message mapping, Unity-to-JS callback examples, lifecycle behavior, and Unity limitations.
+- `yarn prepare`, `yarn typescript`, `yarn lint`, and `yarn test` pass from the package root.
+- `yarn --cwd example expo prebuild --no-install` passes.
+- Expo autolinking `resolve --platform android` discovers `react-native-unity-show`.
+- `./gradlew projects --no-daemon` from `example/android` passes and includes project `:react-native-unity-show`.
+- `./gradlew :react-native-unity-show:compileDebugKotlin --no-daemon` passes.
+- `./gradlew :app:assembleDebug --no-daemon` passes without a Unity export, validating that the package can compile in a modern Expo/RN Android app.
+
+Blocking condition:
+
+- Runtime Unity validation is not complete because the repository does not contain a user-provided Android Unity export with a `unityLibrary` module. The remaining acceptance checks require a real Unity export and device/emulator smoke test: load Unity content, send JS-to-Unity message, emit Unity-to-JS event, and manually validate load/background/foreground/unload lifecycle.
 
 ## MOD-010 - iOS Unity as a Library integration
 
